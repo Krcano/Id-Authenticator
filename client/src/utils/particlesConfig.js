@@ -33,7 +33,7 @@ const particlesConfig={
         random: false,
         anim: {
           enable: false,
-          speed: 1,
+          speed: 2,
           opacity_min: 0.1,
           sync: false
         }
@@ -43,7 +43,7 @@ const particlesConfig={
         random: true,
         anim: {
           enable: false,
-          speed: 40,
+          speed: 30,
           size_min: 0.1,
           sync: false
         }
@@ -57,7 +57,7 @@ const particlesConfig={
       },
       move: {
         enable: true,
-        speed: 6,
+        speed: 1,
         direction: "none",
         random: false,
         straight: false,
@@ -98,7 +98,7 @@ const particlesConfig={
           speed: 3
         },
         repulse: {
-          distance: 200,
+          distance: 50,
           duration: 0.4
         },
         push: {
