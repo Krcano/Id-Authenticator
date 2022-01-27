@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Krcano/Id-Authenticator#readme",
   "dependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^7.0.0",
+    "face-api.js": "^0.22.2"
   }
 }
