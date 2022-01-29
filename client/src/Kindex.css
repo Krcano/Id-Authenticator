@@ -1,0 +1,115 @@
+.footerContainer {
+  display: flex;
+  background: #222330;
+  justify-content: space-evenly;
+  flex-direction: row;
+  padding: 2em;
+  font-family: Share Tech Mono, monospace;
+}
+.img {
+  /* display: flex; */
+  width: 50px;
+  align-items: center;
+}
+.txtImgContainer {
+  display: flex;
+  align-items: center;
+}
+.link {
+  color: white;
+  text-decoration: none;
+}
+.footerLinkText {
+  margin: 1.5em;
+  color: white;
+  font-family: Share Tech Mono, monospace;
+  margin-left: "1.5em";
+  margin-right: "1.5em";
+  margin-bottom: "1.5em";
+}
+.footerPContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  /* margin-left: 1.5em;
+  margin-right: 1.5em; */
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #222330;
+}
+.connectIconsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.icons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.h1Connect {
+  display: flex;
+  color: white;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+/* signup--------------------------- */
+.background {
+  background: #222330;
+  height: 100vh;
+}
+
+.input {
+  display: flex;
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px;
+  outline: none;
+  width: 400px;
+  font-family: serif;
+  margin-bottom: 20px;
+  font-size: 1.25em;
+  color: black;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  font-family: Share Tech Mono, monospace;
+}
+.button {
+  border: none;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  /* text-decoration: none; */
+  font-size: 1.5em;
+  font-family: Share Tech Mono, monospace;
+  width: 400px;
+  background: #ff6162;
+  color: white;
+  position: absolute;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+.label {
+  font-weight: bold;
+  font-family: serif;
+  font-size: 1.5em;
+  padding-right: 10px;
+}
+.h1 {
+  display: flex;
+  color: white;
+  justify-content: center;
+}
+/* login ----------------------------------------*/
+
+.errorText {
+  color: rgb(228, 46, 1);
+  font-family: Share Tech Mono, monospace;
+}
