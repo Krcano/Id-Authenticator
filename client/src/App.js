@@ -14,19 +14,23 @@ import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
 import { useEffect, useRef } from "react";
 import * as faceapi from "face-api.js";
+import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
+import download from "./img/download.jpg";
 
 function App() {
+  // const videoRef = useRef();
   const imgRef = useRef();
   const canvasRef = useRef();
-  const hanldeImage = (async) => {
-    const detect = await faceapi
-      .detectAllFaces(imagRef.current, new faceapi.TinyFaceDetectorOptions())
+  const hanldeImage = async () => {
+    const detections = await faceapi
+      .detectAllFaces(imgRef.current, new faceapi.TinyFaceDetectorOptions())
+      //.detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
       .withFaceLandmarks()
       .withFaceExpressions();
 
-    console.log(detect);
+    console.log(detections);
   };
-
+  console.log("this");
   useEffect(() => {
     const loadModels = () => {
       Promise.all([
@@ -34,15 +38,20 @@ function App() {
         faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
         faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
         faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-      ]).then(hanldeImage);
+      ])
+        .then(hanldeImage)
+        .catch((e) => console.log(e));
       console.log("its done");
     };
 
-    imgRef.current && loadModels;
+    imgRef.current && loadModels();
   });
   return (
     <Router>
       <>
+        <div className="app">
+          <img crossOrigin="annonymous" ref={imgRef} src={download}></img>
+        </div>
         <Header />
         <Routes>
           <Route path="/" element={<Landing />}></Route>
