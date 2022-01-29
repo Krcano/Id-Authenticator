@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import ParticlesBackground from "./Particles";
-import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
+// import Auth from '../utils/auth';
+// import { useMutation } from '@apollo/client';
+// import { ADD_USER } from '../utils/mutations';
 // download
 // import {useMutation} from '@apollo/client'
 
@@ -25,7 +27,7 @@ const styles = {
   form: {
     display: "flex",
     flexDirection: "column",
-    
+
     color: "white",
     alignItems: "center",
     fontFamily: "Playfair Display serif",
@@ -53,7 +55,6 @@ const styles = {
     fontFamily: "serif",
     fontSize: " 1.5em",
     paddingRight: "10px",
-    
   },
   h1: {
     display: "flex",
@@ -64,14 +65,11 @@ const styles = {
     textDecorationColor: "white",
     color: "white",
   },
-  errorText:{
-    color: 'rgb(228, 46, 1)'
-  }
 };
-const Login = () => {
+const SignUp = () => {
   const [FormData, setUserFormData] = useState({ email: "", password: "" });
-  // will need to bring in login mutation and name it LOGIN_USER
-  // const [loginUser, {error}] = useMutation(LOGIN_USER);
+  // will need to bring in login mutation and name it ADD_USER
+  //   const [addUser] = useMutation(ADD_USER);
 
   //   Input changes
   const handleInputChange = (event) => {
@@ -82,23 +80,25 @@ const Login = () => {
   //   Form Submission
   //   const handleFormSubmit = async (event) => {
   //     event.preventDefault();
-  //     try {
-  //       const mutationResponse = await loginUser({
-  //         variables: { email: FormData.email, password: FormData.password },
-  //       });
-  //       const token = mutationResponse.data.login.token;
-  //       Auth.login(token);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
+  //     const mutationResponse = await addUser({
+  //       variables: {
+  //         email: FormData.email,
+  //         password: FormData.password,
+  //         firstName: FormData.firstName,
+  //         lastName: FormData.lastName,
+  //       },
+  //     });
+  //     const token = mutationResponse.data.addUser.token;
+  //     Auth.login(token);
   //   };
+
   return (
-    <div id="login" style={styles.background}>
-      <h1 style={styles.h1}>Login</h1>
+    <div id="signup" style={styles.background}>
+      <h1 style={styles.h1}>Sign Up</h1>
       <ParticlesBackground />
-      <Link style={styles.link} to="/signUp">
+      <Link style={styles.link} to="/login">
         {" "}
-        <h2 style={styles.link}>← Go to Signup</h2>
+        <h2 style={styles.link}>← Go to Login</h2>
       </Link>
 
       {/* referenced redux store hw */}
@@ -106,6 +106,32 @@ const Login = () => {
         style={styles.form}
         //    onSubmit={handleFormSubmit}
       >
+        <div>
+          <label style={styles.label} htmlFor="firstName">
+            First Name:
+          </label>
+          <input
+            style={styles.input}
+            placeholder="First"
+            name="firstName"
+            type="firstName"
+            id="firstName"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label style={styles.label} htmlFor="lastName">
+            Last Name:
+          </label>
+          <input
+            style={styles.input}
+            placeholder="Last"
+            name="lastName"
+            type="lastName"
+            id="lastName"
+            onChange={handleInputChange}
+          />
+        </div>
         <div style={styles.emailContainer} className="">
           <label style={styles.label} htmlFor="email">
             Email address:
@@ -132,11 +158,7 @@ const Login = () => {
             onChange={handleInputChange}
           />
         </div>
-        {/* {error ? (
-          <div>
-            <p style={styles.errorText}>The provided credentials are incorrect</p>
-          </div>
-        ) : null} */}
+        
         <div style={styles.buttonContainer} className="">
           <button style={styles.button} type="submit">
             Submit
@@ -147,4 +169,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
