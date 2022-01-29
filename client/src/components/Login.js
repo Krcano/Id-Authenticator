@@ -17,7 +17,7 @@ const styles = {
     borderRadius: "4px",
     outline: "none",
     width: "400px",
-    fontFamily: "serif",
+    fontFamily: 'Share Tech Mono, monospace',
     marginBottom: "20px",
     fontSize: "1.25em",
     color: "black",
@@ -47,25 +47,29 @@ const styles = {
   buttonContainer: {
     display: "flex",
     justifyContent: "center",
+    fontFamily: 'Share Tech Mono, monospace'
   },
   label: {
     fontWeight: "bold",
-    fontFamily: "serif",
     fontSize: " 1.5em",
     paddingRight: "10px",
+    fontFamily: 'Share Tech Mono, monospace'
     
   },
   h1: {
     display: "flex",
     color: "white",
     justifyContent: "center",
+    fontFamily: 'Share Tech Mono, monospace'
   },
   link: {
     textDecorationColor: "white",
     color: "white",
+    fontFamily: 'Share Tech Mono, monospace'
   },
   errorText:{
-    color: 'rgb(228, 46, 1)'
+    color: 'rgb(228, 46, 1)',
+    fontFamily: 'Share Tech Mono, monospace'
   }
 };
 const Login = () => {
