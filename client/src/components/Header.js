@@ -1,11 +1,12 @@
 import React from 'react';
 import Navigation from './Navigation';
+import woldoLogo from '../img/woldo-logo-small.png';
 
 const Header = () => {
   return (
   <header className='header'>
-        <div>
-            <img src='../img/woldo.png' alt='woldo icon' className='icon'></img>
+        <div className='logo'>
+            <img src={woldoLogo}></img>
         </div>
         <div className='nav'>
             <Navigation />
