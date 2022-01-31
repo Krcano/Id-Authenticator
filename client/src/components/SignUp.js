@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import ParticlesBackground from "./Particles";
 import { Link } from "react-router-dom";
-// import Auth from '../utils/auth';
-// import { useMutation } from '@apollo/client';
-// import { ADD_USER } from '../utils/mutations';
-// download
-// import {useMutation} from '@apollo/client'
+import Auth from "../utils/Auth";
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+
 
 const SignUp = () => {
-  const [FormData, setUserFormData] = useState({ email: "", password: "" });
-  // will need to bring in login mutation and name it ADD_USER
-  //   const [addUser] = useMutation(ADD_USER);
+  const [FormData, setUserFormData] = useState({ username:"",email: "", password: "" });
+    const [addUser, {error}] = useMutation(ADD_USER);
 
   //   Input changes
   const handleInputChange = (event) => {
@@ -19,19 +17,28 @@ const SignUp = () => {
   };
 
   //   Form Submission
-  //   const handleFormSubmit = async (event) => {
-  //     event.preventDefault();
-  //     const mutationResponse = await addUser({
-  //       variables: {
-  //         email: FormData.email,
-  //         password: FormData.password,
-  //         firstName: FormData.firstName,
-  //         lastName: FormData.lastName,
-  //       },
-  //     });
-  //     const token = mutationResponse.data.addUser.token;
-  //     Auth.login(token);
-  //   };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try{
+      const mutationResponse = await addUser({
+        variables: {
+         username: FormData.username,
+         email: FormData.email,
+         password: FormData.password
+        },
+      });
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
+    }catch(err){
+      console.error(err);
+    }
+    setUserFormData({
+      username: "",
+      email: "",
+      password: "",
+    });
+      
+  };
 
   return (
     <div id="signup" className="background">
@@ -45,34 +52,22 @@ const SignUp = () => {
       {/* referenced redux store hw */}
       <form
         className="form"
-        //    onSubmit={handleFormSubmit}
+           onSubmit={handleFormSubmit}
       >
         <div>
-          <label className="label" htmlFor="firstName">
-            First Name:
+          <label className="label" htmlFor="username">
+            Username:
           </label>
           <input
             className="input"
-            placeholder="First"
-            name="firstName"
-            type="firstName"
-            id="firstName"
+            placeholder="Username"
+            name="username"
+            type="text"
+            id="username"
             onChange={handleInputChange}
           />
         </div>
-        <div>
-          <label className="label" htmlFor="lastName">
-            Last Name:
-          </label>
-          <input
-            className="input"
-            placeholder="Last"
-            name="lastName"
-            type="lastName"
-            id="lastName"
-            onChange={handleInputChange}
-          />
-        </div>
+
         <div className="emailContainer">
           <label className="label" htmlFor="email">
             Email address:
@@ -99,7 +94,11 @@ const SignUp = () => {
             onChange={handleInputChange}
           />
         </div>
-
+        {error && (
+              <div className="">
+                {error.message}
+              </div>
+            )}
         <div className="buttonContainer">
           <button className="button" type="submit">
             Submit

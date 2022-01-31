@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import ParticlesBackground from "./Particles";
-import Auth from "../utils/auth";
+import Auth from "../utils/Auth";
 import { Link } from "react-router-dom";
+import { LOGIN_USER } from "../utils/mutations";
 // download
-// import {useMutation} from '@apollo/client'
+import {useMutation} from '@apollo/client'
 
 const Login = () => {
   const [FormData, setUserFormData] = useState({ email: "", password: "" });
   // will need to bring in login mutation and name it LOGIN_USER
-  // const [loginUser, {error}] = useMutation(LOGIN_USER);
+  const [loginUser, {error}] = useMutation(LOGIN_USER);
 
   //   Input changes
   const handleInputChange = (event) => {
@@ -17,31 +18,33 @@ const Login = () => {
   };
 
   //   Form Submission
-  //   const handleFormSubmit = async (event) => {
-  //     event.preventDefault();
-  //     try {
-  //       const mutationResponse = await loginUser({
-  //         variables: { email: FormData.email, password: FormData.password },
-  //       });
-  //       const token = mutationResponse.data.login.token;
-  //       Auth.login(token);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await loginUser({
+        variables: { email: FormData.email, password: FormData.password },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div id="login" className="background">
-      <h1 className="h1">Login</h1>
+      
       <ParticlesBackground />
+      <h1 className="h1">Login</h1>
       <Link className="link" to="/signUp">
         {" "}
-        <h2 className="link">← Go to Signup</h2>
+        <h2 className="linkText">← Go to Signup</h2>
       </Link>
 
       {/* referenced redux store hw */}
+     
       <form
         className="form"
-        //    onSubmit={handleFormSubmit}
+           onSubmit={handleFormSubmit}
       >
         <div className="emailContainer">
           <label className="label" htmlFor="email">
@@ -69,11 +72,11 @@ const Login = () => {
             onChange={handleInputChange}
           />
         </div>
-        {/* {error ? (
+        {error ? (
           <div>
-            <p style={styles.errorText}>The provided credentials are incorrect</p>
+            <p className="errorText">The provided credentials are incorrect</p>
           </div>
-        ) : null} */}
+        ) : null}
         <div className="buttonContainer">
           <button className="button" type="submit">
             Submit
