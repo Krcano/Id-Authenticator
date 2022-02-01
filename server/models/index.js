@@ -1,2 +1,4 @@
 const User = require('./User');
-module.exports = { User };
+const SearchInquiry =require('./SearchInquiry')
+
+module.exports = { User, SearchInquiry };

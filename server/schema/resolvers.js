@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models/");
+const { User, SearchInquiry } = require("../models/");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -10,12 +10,9 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate("");
     },
-    // me: async (parent, args, context) => {
-    //   if (context.user) {
-    //     return User.findOne({ _id: context.user._id }).populate("");
-    //   }
-    //   throw new AuthenticationError("You need to be logged in!");
-    // },
+    searchInquiry: async (parent, { _id }) => {
+      return SearchInquiry.findById({ _id }).populate("");
+    },
   },
 
   Mutation: {
@@ -50,6 +47,49 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
+    // not too sure about this part, trying to  create a missing person and update the array of missing person under a profile if someone has an account
+    addSearchInquiry: async (
+      parent,
+      { firstName, lastName, dateOfBirth, image },
+      context
+    ) => {
+      if (context.user) {
+        const searchInquiry = new SearchInquiry({
+         
+          firstName,
+          lastName,
+          dateOfBirth,
+          image,
+        });
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { searchInquiries: searchInquiry },
+        });
+        console.log(searchInquiry);
+        return searchInquiry;
+      }
+      // throw new AuthenticationError('You need to be logged in!');
+    },
+
+    updateSearchInquiry: async (parent, { firstName, lastName, dateOfBirth, image})=>{
+       const updated = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { searchInquiries: {firstName, lastName, dateOfBirth, image}}  },
+        { new: true }
+       );
+       return updated
+    },
+
+    removeSearchInquiry: async (parent, { _id}, context)=>{
+      if( context.user){
+         const updated = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { searchInquiries: {_id:_id}  } },
+          { new: true }
+         )
+         return updated
+      }
+    }
   },
 };
 

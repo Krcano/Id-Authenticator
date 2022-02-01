@@ -1,6 +1,8 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
+const SearchInquiry= require("./SearchInquiry");
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -19,6 +21,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  searchInquiries: [SearchInquiry.schema],
 });
 
 userSchema.pre("save", async function (next) {

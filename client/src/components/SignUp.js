@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ParticlesBackground from "./Particles";
 import { Link } from "react-router-dom";
-import Auth from "../utils/Auth";
+import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
