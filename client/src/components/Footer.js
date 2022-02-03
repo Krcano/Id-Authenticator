@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import woldoLogo from '../img/woldo-logo-large.png';
+import facebook from "../img/white-facebook.png"
+import twitter from "../img/white-twitter.png"
+import google from "../img/white-google.png"
 
 const Footer = () => {
   return (
     <>
       <div className="footerContainer">
         <div className="txtImgContainer">
-          <img className="img" src="./woldo.png" alt="logo icon" />
+          <img className="img" src={woldoLogo} alt="logo icon" />
           <h1 className="footerLinkText">WOLDO</h1>
         </div>
 
@@ -32,22 +36,22 @@ const Footer = () => {
             <a href="#">
               <img
                 className="icons"
-                src="./white-facebook.png"
+                src={facebook}
                 alt="facebook icon"
               />
             </a>
             <a href="#">
               <img
                 className="icons"
-                src="./white-twitter.png"
+                src={twitter}
                 alt="twitter icon"
               />
             </a>
             <a href="#">
               <img
                 className="icons"
-                src="./white-google.png"
-                alt="twitter icon"
+                src={google}
+                alt="google icon"
               />
             </a>
           </div>
