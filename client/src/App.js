@@ -12,8 +12,17 @@ import Landing from "./pages/Landing";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
+<<<<<<< HEAD
 // import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
 // import download from "./img/download.jpg";
+=======
+import { useEffect, useRef } from "react";
+import * as faceapi from "face-api.js";
+import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
+import download from "./img/download.jpg";
+import FirstUpload from "./pages/FirstUpload";
+
+>>>>>>> 9f1af927364d53c2ebe89a036915aafe5367d88a
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -43,6 +52,7 @@ function App() {
   // {image ? (<Face image = {image}/>) : (this was the main page or leace this out )}
   return (
     <ApolloProvider client={client}>
+<<<<<<< HEAD
       <Router>
         <>
           <Header />
@@ -54,6 +64,24 @@ function App() {
           <Footer />
         </>
       </Router>
+=======
+    <Router>
+      <>
+        {/* <div className="app">
+          <img crossOrigin="annonymous" ref={imgRef} src={download}></img>
+        </div> */}
+        <Header />
+        <Routes>
+          <Route path="/" element={<Landing />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/profile" element={<FirstUpload />}></Route>
+        </Routes>
+        <Footer />
+      </>
+      <canvas ref={canvasRef} />
+    </Router>
+>>>>>>> 9f1af927364d53c2ebe89a036915aafe5367d88a
     </ApolloProvider>
   );
 }

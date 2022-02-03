@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import ParticlesBackground from "./Particles";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
+=======
+import Auth from "../utils/auth";
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+
+>>>>>>> 9f1af927364d53c2ebe89a036915aafe5367d88a
 
 const SignUp = () => {
   const [FormData, setUserFormData] = useState({

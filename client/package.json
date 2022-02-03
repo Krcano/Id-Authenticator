@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^4.18.5",
     "face-api.js": "^0.22.2",
     "graphql": "^15.4.0",
     "jwt-decode": "^3.1.2",

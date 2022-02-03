@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import ParticlesBackground from "./Particles";
+<<<<<<< HEAD
 import auth from "../utils/auth";
+=======
+import Auth from "../utils/auth";
+>>>>>>> 9f1af927364d53c2ebe89a036915aafe5367d88a
 import { Link } from "react-router-dom";
 import { LOGIN_USER } from "../utils/mutations";
 // download
