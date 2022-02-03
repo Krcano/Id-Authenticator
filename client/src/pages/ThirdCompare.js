@@ -6,6 +6,7 @@ import img2 from "../img/download.2.jpg";
 const Compare = () => {
   // const videoRef = useRef();
   const imgRef = useRef();
+  const imgRef2 = useRef();
   const canvasRef = useRef();
   const hanldeImage = async () => {
     const detections = await faceapi
@@ -14,6 +15,11 @@ const Compare = () => {
       .withFaceLandmarks()
       .withFaceExpressions();
     console.log(detections);
+    const detections2 = await faceapi.detectAllFaces(
+      imgRef2.current,
+      new faceapi.TinyFaceDetectorOptions()
+    );
+    console.log(detections2);
 
     canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(imgRef.current);
     faceapi.matchDimensions(canvasRef.current, {
@@ -41,6 +47,7 @@ const Compare = () => {
     };
 
     imgRef.current && loadModels();
+    // imgRef2.current && loadModels();
   }, []);
 
   return (
@@ -51,10 +58,10 @@ const Compare = () => {
         </div>
         <div className="">
           <div className="imgRef">
-            <img ref={imgRef} src={img2} />
+            <img ref={imgRef} src={img} />
           </div>
           <div>
-            <img ref={imgRef} src={img2} />
+            <img ref={imgRef2} src={img2} />
           </div>
         </div>
       </div>
