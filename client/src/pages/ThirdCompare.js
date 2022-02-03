@@ -56,12 +56,27 @@ const Compare = () => {
         <div className="container-header">
           <h1>Compare</h1>
         </div>
-        <div className="">
-          <div className="imgRef">
-            <img ref={imgRef} src={img} />
+        <div className="form-container">
+          <div className="compare-container">
+            <div className="reference-frame">
+              <img ref={imgRef} src={img} />
+            </div>
+            <div className="search-frame">
+              <img ref={imgRef2} src={img2} />
+            </div>
           </div>
-          <div>
-            <img ref={imgRef2} src={img2} />
+          <div className="results-container">
+            <div className="accuracy-container">
+              <h2>50% Accurate</h2>
+            </div>
+            <div className="pass-failed">
+              <p>
+                <strong>NOT WOLDO</strong>
+              </p>
+            </div>
+            <div>
+              <button className="button">New Search</button>
+            </div>
           </div>
         </div>
       </div>
