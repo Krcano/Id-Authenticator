@@ -1,7 +1,8 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const SearchInquiry= require("./SearchInquiry");
+const SearchInquiry = require("./SearchInquiry");
+// const { SearchInquiry} = require("./index");
 
 const userSchema = new Schema({
   username: {
@@ -21,7 +22,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  searchInquiries: [SearchInquiry.schema],
+  searchInquiries: [{ type: Schema.Types.ObjectId, ref: SearchInquiry }],
 });
 
 userSchema.pre("save", async function (next) {
