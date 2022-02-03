@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import ParticlesBackground from "./Particles";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
+import auth from "../utils/auth";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+=======
 import Auth from "../utils/auth";
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
+>>>>>>> 9f1af927364d53c2ebe89a036915aafe5367d88a
 
 const SignUp = () => {
-  const [FormData, setUserFormData] = useState({ username:"",email: "", password: "" });
-    const [addUser, {error}] = useMutation(ADD_USER);
+  const [FormData, setUserFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   //   Input changes
   const handleInputChange = (event) => {
@@ -19,17 +29,17 @@ const SignUp = () => {
   //   Form Submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    try{
+    try {
       const mutationResponse = await addUser({
         variables: {
-         username: FormData.username,
-         email: FormData.email,
-         password: FormData.password
+          username: FormData.username,
+          email: FormData.email,
+          password: FormData.password,
         },
       });
       const token = mutationResponse.data.addUser.token;
-      Auth.login(token);
-    }catch(err){
+      auth.login(token);
+    } catch (err) {
       console.error(err);
     }
     setUserFormData({
@@ -37,7 +47,6 @@ const SignUp = () => {
       email: "",
       password: "",
     });
-      
   };
 
   return (
@@ -50,10 +59,7 @@ const SignUp = () => {
       </Link>
 
       {/* referenced redux store hw */}
-      <form
-        className="form"
-           onSubmit={handleFormSubmit}
-      >
+      <form className="form" onSubmit={handleFormSubmit}>
         <div>
           <label className="label" htmlFor="username">
             Username:
@@ -94,11 +100,7 @@ const SignUp = () => {
             onChange={handleInputChange}
           />
         </div>
-        {error && (
-              <div className="">
-                {error.message}
-              </div>
-            )}
+        {error && <div className="">{error.message}</div>}
         <div className="buttonContainer">
           <button className="button" type="submit">
             Submit

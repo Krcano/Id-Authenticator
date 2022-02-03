@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Landing from "./pages/Landing";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
+<<<<<<< HEAD
+// import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
+// import download from "./img/download.jpg";
+=======
 import { useEffect, useRef } from "react";
 import * as faceapi from "face-api.js";
 import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
 import download from "./img/download.jpg";
 import FirstUpload from "./pages/FirstUpload";
 
+>>>>>>> 9f1af927364d53c2ebe89a036915aafe5367d88a
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,38 +44,27 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
 function App() {
-  // const videoRef = useRef();
-  const imgRef = useRef();
-  const canvasRef = useRef();
-  const hanldeImage = async () => {
-    const detections = await faceapi
-      .detectAllFaces(imgRef.current, new faceapi.TinyFaceDetectorOptions())
-      //.detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
-      .withFaceLandmarks()
-      .withFaceExpressions();
-
-    console.log(detections);
-  };
-  console.log("this");
-  useEffect(() => {
-    const loadModels = () => {
-      Promise.all([
-        faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
-        faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
-        faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
-        faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-      ])
-        .then(hanldeImage)
-        .catch((e) => console.log(e));
-      console.log("its done");
-    };
-
-    imgRef.current && loadModels();
-  });
+  // <label htmlFor ="file"> this can be anything this will upload them thoiugh so maybe that button </label>
+  // <input onChange={(e) => setFile(e.target.files[0])} id = "file" style = {{display: "none"}}type = "file"/>
+  // can use css to change the way it looks though
+  // once all in will create a route
+  // {image ? (<Face image = {image}/>) : (this was the main page or leace this out )}
   return (
     <ApolloProvider client={client}>
+<<<<<<< HEAD
+      <Router>
+        <>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Landing />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/signup" element={<SignUp />}></Route>
+          </Routes>
+          <Footer />
+        </>
+      </Router>
+=======
     <Router>
       <>
         {/* <div className="app">
@@ -87,6 +81,7 @@ function App() {
       </>
       <canvas ref={canvasRef} />
     </Router>
+>>>>>>> 9f1af927364d53c2ebe89a036915aafe5367d88a
     </ApolloProvider>
   );
 }
