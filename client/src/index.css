@@ -231,7 +231,7 @@ Table of Contents  */
   background: var(--primary-dark-color);
   height: 100vh;
   position: relative;
-  top: 10vh;
+  /* top: 10vh; */
 }
 
 .input {
@@ -266,6 +266,7 @@ Table of Contents  */
   width: 350px;
   background: var(--primary-light-color);
   color: white;
+  /* position:absolute; */
 }
 .buttonContainer {
   display: flex;

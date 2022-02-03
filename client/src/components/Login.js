@@ -3,7 +3,6 @@ import ParticlesBackground from "./Particles";
 import auth from "../utils/auth";
 import { Link } from "react-router-dom";
 import { LOGIN_USER } from "../utils/mutations";
-// download
 import { useMutation } from "@apollo/client";
 
 const Login = () => {
@@ -34,11 +33,12 @@ const Login = () => {
     <div id="login" className="background">
       <ParticlesBackground />
       <h1 className="h1">Login</h1>
+      
       <Link className="link" to="/signUp">
-        {" "}
-        <h2 className="linkText">← Go to Signup</h2>
+        {/* {" "} */}
+        <h2 className="link"> ← Go to Signup</h2>
       </Link>
-
+     
       {/* referenced redux store hw */}
 
       <form className="form" onSubmit={handleFormSubmit}>
