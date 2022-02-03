@@ -16,6 +16,7 @@ import { useEffect, useRef } from "react";
 import * as faceapi from "face-api.js";
 import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
 import download from "./img/download.jpg";
+import FirstUpload from "./pages/FirstUpload";
 
 
 const httpLink = createHttpLink({
@@ -72,14 +73,15 @@ function App() {
     <ApolloProvider client={client}>
     <Router>
       <>
-        <div className="app">
+        {/* <div className="app">
           <img crossOrigin="annonymous" ref={imgRef} src={download}></img>
-        </div>
+        </div> */}
         <Header />
         <Routes>
           <Route path="/" element={<Landing />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/profile" element={<FirstUpload />}></Route>
         </Routes>
         <Footer />
       </>

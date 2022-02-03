@@ -21,9 +21,13 @@
     "url": "https://github.com/Krcano/Id-Authenticator/issues"
   },
   "homepage": "https://github.com/Krcano/Id-Authenticator#readme",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  },
   "dependencies": {
-    "concurrently": "^7.0.0",
+    "apollo-server-express": "^2.15.0",
     "face-api.js": "^0.22.2",
+    "graphql": "^15.4.0",
     "react-tsparticles": "^1.39.1"
   }
 }
