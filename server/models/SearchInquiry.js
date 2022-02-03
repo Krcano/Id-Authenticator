@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const { schema } = require("./User");
 
 const SearchInquirySchema = new Schema({
   firstName: {
@@ -18,6 +19,7 @@ const SearchInquirySchema = new Schema({
     type: String,
     // required: true,
   },
+  
 });
 
 const SearchInquiry = model("SearchInquiry", SearchInquirySchema);

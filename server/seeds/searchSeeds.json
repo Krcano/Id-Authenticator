@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Dwight",
+    "lastName": "Schrute",
+    "dateOfBirth": "09091998",
+    "image": ""
+  },
+  {
+    "firstName": "DwightUpdated",
+    "lastName": "SchruteUpdated",
+    "dateOfBirth": "09091998",
+    "image": ""
+  },
+  {
+    "firstName": "Kelly",
+    "lastName": "Cano",
+    "dateOfBirth": "01032001",
+    "image": ""
+  },
+  {
+    "firstName": "KellyUpdated",
+    "lastName": "CanoUpdated",
+    "dateOfBirth": "01032001",
+    "image": ""
+  },
+  {
+    "firstName": "Briana",
+    "lastName": "Cano",
+    "dateOfBirth": "01212003",
+    "image": ""
+  },
+  {
+    "firstName": "BrianaUpdated",
+    "lastName": "CanoUpdated",
+    "dateOfBirth": "01212003",
+    "image": ""
+  }
+]

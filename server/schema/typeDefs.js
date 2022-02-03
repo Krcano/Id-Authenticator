@@ -5,7 +5,7 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String
-    
+    searchInquiries: [SearchInquiry]
   }
 
   type Auth {
@@ -31,8 +31,8 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addSearchInquiry(firstName: String, lastName: String, dateOfBirth:String, image: String): SearchInquiry
-    updateSearchInquiry(firstName: String, lastName: String, dateOfBirth:String, image: String): SearchInquiry
-    removeSearchInquiry(firstName: String, lastName: String, dateOfBirth: String, image: String): User
+    updateSearchInquiry(_id:ID!, firstName: String, lastName: String, dateOfBirth:String, image: String): SearchInquiry
+    removeSearchInquiry(_id: ID!): SearchInquiry
   }
 `;
 // still need an update and delete

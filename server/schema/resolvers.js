@@ -5,13 +5,13 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("");
+      return User.find();
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("");
+      return User.findOne({ username }).populate("searchInquiries");
     },
     searchInquiry: async (parent, { _id }) => {
-      return SearchInquiry.findById({ _id }).populate("");
+      return SearchInquiry.findById({ _id });
     },
   },
 
@@ -47,49 +47,63 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-    // not too sure about this part, trying to  create a missing person and update the array of missing person under a profile if someone has an account
+
     addSearchInquiry: async (
       parent,
       { firstName, lastName, dateOfBirth, image },
       context
     ) => {
       if (context.user) {
-        const searchInquiry = new SearchInquiry({
-         
+        const searchInquiry = await SearchInquiry.create({
           firstName,
           lastName,
           dateOfBirth,
           image,
         });
 
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { searchInquiries: searchInquiry },
-        });
         console.log(searchInquiry);
+
+        const updatedArray = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: {
+              searchInquiries: searchInquiry._id,
+            },
+          }
+        );
+        const userSearch = await User.findById({
+          _id: context.user._id,
+        }).populate("searchInquiries");
+        console.log(userSearch);
+
         return searchInquiry;
       }
-      // throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
 
-    updateSearchInquiry: async (parent, { firstName, lastName, dateOfBirth, image})=>{
-       const updated = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $pull: { searchInquiries: {firstName, lastName, dateOfBirth, image}}  },
+    updateSearchInquiry: async (
+      parent,
+      { _id, firstName, lastName, dateOfBirth, image },
+      context
+    ) => {
+      const updatedSearch = await SearchInquiry.findOneAndUpdate(
+        { _id: _id },
+        { firstName, lastName, dateOfBirth, image },
         { new: true }
-       );
-       return updated
+      );
+
+      console.log(updatedSearch);
+      return updatedSearch;
     },
 
-    removeSearchInquiry: async (parent, { _id}, context)=>{
-      if( context.user){
-         const updated = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { searchInquiries: {_id:_id}  } },
-          { new: true }
-         )
-         return updated
-      }
-    }
+    removeSearchInquiry: async (parent, { _id }) => {
+      const data = await SearchInquiry.findOneAndDelete(
+        { _id: _id },
+        { new: true }
+      );
+      console.log(data);
+      return data;
+    },
   },
 };
 
