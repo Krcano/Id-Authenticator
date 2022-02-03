@@ -1,3 +1,27 @@
+/*  Table of Contents
+
+1. Global Styles 
+
+2. Pages
+
+3. Footer
+
+4. Sign-up 
+
+5. Login
+
+6. FirstUpload Page
+
+7. ThirdCompare Page
+
+Table of Contents  */
+
+
+
+/* ==================
+   1. Global Styles
+   =============== */
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -72,7 +96,10 @@
   width: 100%;
 }
 
-/* Pages */
+/* ==================
+   2. Pages
+   =============== */
+
 .directions-grid {
   box-sizing: border-box;
   display: grid;
@@ -132,7 +159,11 @@
   padding-left: 40px;
   text-align: left;
 }
-/* footer------------------------ */
+
+/* ==================
+   3. Footer
+   =============== */
+
 .footerContainer {
   display: flex;
   background: var(--primary-dark-color);
@@ -192,7 +223,10 @@
   padding-top: 2em;
 }
 
-/* signup--------------------------- */
+/* ==================
+   4. Sign-up
+   =============== */
+
 .background {
   background: var(--primary-dark-color);
   height: 100vh;
@@ -229,7 +263,7 @@
   /* text-decoration: none; */
   font-size: 1.5em;
   font-family: var(--title-font);
-  width: 400px;
+  width: 350px;
   background: var(--primary-light-color);
   color: white;
   /* position:absolute; */
@@ -250,14 +284,20 @@
   justify-content: center;
   padding-top: 2em;
 }
-/* login ----------------------------------------*/
+
+/* ==================
+   5. Login
+   =============== */
 
 .errorText {
   color: rgb(228, 46, 1);
   font-family: var(--title-font);
 }
 
-/* FirstUpload Page ----------------------------- */
+/* ==================
+   6. FirstUpload Page
+   =============== */
+
 .profile-body {
   height: 80vh;
   width: 100%;
@@ -341,4 +381,66 @@
 
 .canvas {
   position: absolute;
+}
+
+/* ==================
+   7. ThirdCompare Page
+   =============== */
+
+.compare-container {
+  box-sizing: border-box;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  gap: 5px
+}
+
+.reference-frame {
+  width: 30%;
+  height: 100%;
+}
+
+.reference-frame img {
+  width: 100%;
+  height: auto;
+  box-shadow: -12px -12px 2px 1px  var(--primary-light-color);
+}
+
+.search-frame {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-frame img {
+  height: 100%;
+  width: auto;
+  box-shadow: 12px 12px 2px 1px  var(--primary-light-color);
+}
+
+.results-container {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.accuracy-container h2 {
+  font-size: 3.5em;
+  font-weight: bold;
+  font-family: var(--title-font);
+}
+
+.pass-failed p {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.5em;
+  font-family: var(--title-font);
+  background-color: red;
 }
