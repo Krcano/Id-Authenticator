@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import ParticlesBackground from "./Particles";
-import Auth from "../utils/Auth";
+import auth from "../utils/auth";
 import { Link } from "react-router-dom";
 import { LOGIN_USER } from "../utils/mutations";
 // download
-import {useMutation} from '@apollo/client'
+import { useMutation } from "@apollo/client";
 
 const Login = () => {
   const [FormData, setUserFormData] = useState({ email: "", password: "" });
   // will need to bring in login mutation and name it LOGIN_USER
-  const [loginUser, {error}] = useMutation(LOGIN_USER);
+  const [loginUser, { error }] = useMutation(LOGIN_USER);
 
   //   Input changes
   const handleInputChange = (event) => {
@@ -25,14 +25,13 @@ const Login = () => {
         variables: { email: FormData.email, password: FormData.password },
       });
       const token = mutationResponse.data.login.token;
-      Auth.login(token);
+      auth.login(token);
     } catch (e) {
       console.log(e);
     }
   };
   return (
     <div id="login" className="background">
-      
       <ParticlesBackground />
       <h1 className="h1">Login</h1>
       <Link className="link" to="/signUp">
@@ -41,11 +40,8 @@ const Login = () => {
       </Link>
 
       {/* referenced redux store hw */}
-     
-      <form
-        className="form"
-           onSubmit={handleFormSubmit}
-      >
+
+      <form className="form" onSubmit={handleFormSubmit}>
         <div className="emailContainer">
           <label className="label" htmlFor="email">
             Email address:
