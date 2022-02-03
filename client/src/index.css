@@ -9,8 +9,8 @@
   --primary-light-color: #ff6162;
   --primary-font-color: #d2d3d9;
   --secondary-font-color: #616170;
-  --title-font: 'Share Tech Mono', monospace;
-  --script-font: 'Share Tech Mono', monospace;
+  --title-font: "Share Tech Mono", monospace;
+  --script-font: "Share Tech Mono", monospace;
 }
 
 .header {
@@ -50,22 +50,21 @@
   color: var(--primary-light-color);
   font-size: 20px;
   font-weight: bold;
-
 }
 
 .nav ul a {
   text-decoration: none;
-  color: var(--primary-font-color);  
+  color: var(--primary-font-color);
 }
 
 .nav ul a:hover {
-  text-shadow: 2px 2px 5px var(--primary-light-color); 
+  text-shadow: 2px 2px 5px var(--primary-light-color);
 }
 
 .hero {
   display: flex;
   justify-content: center;
-  background-color: var(--secondary-font-color); 
+  background-color: var(--secondary-font-color);
 }
 
 .hero-video {
@@ -140,7 +139,7 @@
   justify-content: space-evenly;
   flex-direction: row;
   padding: 2em;
-  font-family:var(--title-font);
+  font-family: var(--title-font);
 }
 .img {
   /* display: flex; */
@@ -156,12 +155,11 @@
   align-items: flex-end;
   color: var(--primary-font-color);
   text-decoration: none;
- 
 }
 .footerLinkText {
   margin: 1.5em;
   color: var(--primary-font-color);
-  font-family:var(--title-font);
+  font-family: var(--title-font);
   margin-left: "1.5em";
   margin-right: "1.5em";
   margin-bottom: "1.5em";
@@ -199,7 +197,7 @@
   background: var(--primary-dark-color);
   height: 100vh;
   position: relative;
-  top: 10vh
+  top: 10vh;
 }
 
 .input {
@@ -216,10 +214,10 @@
 .form {
   display: flex;
   flex-direction: column;
-  
+
   color: var(--primary-font-color);
   align-items: center;
-  font-family:var(--title-font);
+  font-family: var(--title-font);
   margin-top: 2em;
 }
 .button {
@@ -230,7 +228,7 @@
   cursor: pointer;
   /* text-decoration: none; */
   font-size: 1.5em;
-  font-family:var(--title-font);
+  font-family: var(--title-font);
   width: 400px;
   background: var(--primary-light-color);
   color: white;
@@ -250,13 +248,12 @@
   color: var(--primary-font-color);
   justify-content: center;
   padding-top: 2em;
-  
 }
 /* login ----------------------------------------*/
 
 .errorText {
   color: rgb(228, 46, 1);
-  font-family:var(--title-font);
+  font-family: var(--title-font);
 }
 
 /* FirstUpload Page ----------------------------- */
@@ -284,9 +281,9 @@
 }
 
 .container-header h1 {
-    padding: 20px;
-    font-family: var(--title-font);
-    margin: 0;
+  padding: 20px;
+  font-family: var(--title-font);
+  margin: 0;
 }
 
 .form-container {
@@ -339,4 +336,8 @@
   flex-direction: row;
   justify-content: space-evenly;
   gap: 20px;
+}
+
+.canvas {
+  position: absolute;
 }
