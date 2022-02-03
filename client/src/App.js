@@ -15,12 +15,9 @@ import Footer from "./components/Footer";
 
 // import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
 // import download from "./img/download.jpg";
-
-import { useEffect, useRef } from "react";
-import * as faceapi from "face-api.js";
-import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
-import download from "./img/download.jpg";
 import FirstUpload from "./pages/FirstUpload";
+import SecondUpload from "./pages/SecondUpload";
+import ThirdCompare from "./pages/ThirdCompare";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -61,10 +58,10 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/profile" element={<FirstUpload />}></Route>
+            <Route path="/compare" element={<ThirdCompare />}></Route>
           </Routes>
           <Footer />
         </>
-        <canvas ref={canvasRef} />
       </Router>
     </ApolloProvider>
   );
