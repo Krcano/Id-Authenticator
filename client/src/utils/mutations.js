@@ -50,7 +50,7 @@ export const ADD_SEARCH_INQUIRY = gql`
 
 export const UPDATE_SEARCH_INQUIRY = gql`
 mutation updateSearchInquiry {
-  updateSearchInquiry(_id:ID! firstName: String lastName: String dateOfBirth: String image: String) {
+  updateSearchInquiry(_id:ID firstName: String lastName: String dateOfBirth: String image: String) {
     _id
     firstName
     lastName
@@ -63,7 +63,7 @@ mutation updateSearchInquiry {
 export const REMOVE_SEARCH_INQUIRY = gql`
 mutation removeSearchInquiry {
   removeSearchInquiry(
-   _id: ID!
+   _id: ID
   ) {
     firstName
     lastName
