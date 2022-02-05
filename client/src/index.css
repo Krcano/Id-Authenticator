@@ -92,7 +92,7 @@ Table of Contents  */
 }
 
 .hero-video {
-  /* height: 100vh; */
+  height: 100vh;
   width: 100%;
 }
 
@@ -379,8 +379,10 @@ Table of Contents  */
   gap: 20px;
 }
 
-.canvas {
+canvas {
   position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* ==================
@@ -413,6 +415,7 @@ Table of Contents  */
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
 }
 
 .search-frame img {

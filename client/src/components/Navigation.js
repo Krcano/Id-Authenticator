@@ -38,13 +38,12 @@ const Navigation = () => {
         <Link to="/">HOME</Link>
       </li>
       <li>
-        <Link to="/testimonials">TESTIMONIALS</Link>
+        <Link to="/testimonials">PROCESS</Link>
       </li>
-
-      {showNavigation()}
       <li>
         <Link to="/contact">CONTACT</Link>
       </li>
+      {showNavigation()}
     </ul>
   );
 };
