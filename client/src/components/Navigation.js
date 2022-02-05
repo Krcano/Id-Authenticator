@@ -8,7 +8,7 @@ const Navigation = () => {
       return (
         <ul>
           <li>
-            <Link to="/firstUpload">UPLOAD</Link>
+            <Link to="/compare">UPLOAD</Link>
           </li>
           
           <li>

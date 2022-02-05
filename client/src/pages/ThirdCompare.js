@@ -142,14 +142,13 @@ const Compare = () => {
               <div className="first-last-container">
                 <div>
                   <input  type="text"
-                    name="first name"
+                    name="firstName"
                     placeholder="firstName"
                     onChange={handleInputChange}>
-                 
-                    </input>
+                  </input>
                 </div>
                 <div>
-                  <input  type="text" name="lastName" placeholder="last name" onChange={handleInputChange}> </input>
+                  <input type="text" name="lastName" placeholder="last name" onChange={handleInputChange}></input>
                 </div>
               </div>
               <div>
@@ -157,10 +156,9 @@ const Compare = () => {
                   name="dateOfBirth"
                   placeholder="MM/DD/YYYY"
                   onChange={handleInputChange}>
-                  
-                  </input>
+                </input>
               </div>
-              <button className="button">Start</button>
+              <button className="button" type="submit">Start</button>
             </form>
           </div>
         </div>
