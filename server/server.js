@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, "../media")));
 app.use(express.static(path.join(__dirname, "../../weights")));
 app.use(express.static(path.join(__dirname, "../../dist")));
 
-app.get("/", (req, res) => res.redirect("/face_detection"));
+// app.get("/", (req, res) => res.redirect("/face_detection"));
 app.get("/face_detection", (req, res) =>
   res.sendFile(path.join(viewsDir, "faceDetection.html"))
 );
