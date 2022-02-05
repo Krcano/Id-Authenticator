@@ -14,6 +14,8 @@
 
 7. ThirdCompare Page
 
+8. Profile
+
 Table of Contents  */
 
 
@@ -221,6 +223,7 @@ Table of Contents  */
   justify-content: center;
   margin-bottom: 1em;
   padding-top: 2em;
+  
 }
 
 /* ==================
@@ -274,7 +277,7 @@ Table of Contents  */
 }
 .label {
   font-weight: bold;
-  font-family: serif;
+  font-family: var(--title-font);
   font-size: 1.5em;
   padding-right: 10px;
 }
@@ -283,6 +286,7 @@ Table of Contents  */
   color: var(--primary-font-color);
   justify-content: center;
   padding-top: 2em;
+  font-family: var(--title-font);
 }
 
 /* ==================
@@ -446,4 +450,34 @@ canvas {
   font-size: 1.5em;
   font-family: var(--title-font);
   background-color: red;
+}
+
+
+
+/* ==================
+   8. Profile Page
+   =============== */
+.border{
+  border: var(--primary-light-color) solid 3px;
+  background-color: white;
+  margin-bottom: 5em;
+  margin-top: 5em;
+  text-align: center;
+  padding: 2em;
+  width: 400px;
+  box-shadow: white 20px, 20px;
+  
+}
+.dataContainer{
+  display: flex;
+flex-wrap: wrap;
+  flex-direction: row;
+  /* background-color: white; */
+  justify-content: space-evenly;
+  font-family: var(--title-font);
+ 
+}
+.profBG{
+  background-color: var(--primary-dark-color);
+  height: auto
 }
