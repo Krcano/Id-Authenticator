@@ -7,12 +7,19 @@ const resolvers = {
     users: async () => {
       return User.find();
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("searchInquiries");
+    user: async (parent, {_id}, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate(
+          "searchInquiries"
+        );
+      }
     },
     searchInquiry: async (parent, { _id }) => {
       return SearchInquiry.findById({ _id });
     },
+    // searchInquiries: async()=>{
+    //   return SearchInquiry.find()
+    // }
   },
 
   Mutation: {
@@ -97,7 +104,7 @@ const resolvers = {
     },
 
     removeSearchInquiry: async (parent, { _id }) => {
-      const data = await SearchInquiry.findOneAndDelete(
+      const data = await SearchInquiry.findOneAndRemove(
         { _id: _id },
         { new: true }
       );

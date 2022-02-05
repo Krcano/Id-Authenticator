@@ -8,6 +8,10 @@ const Navigation = () => {
       return (
         <ul>
           <li>
+            <Link to="/firstUpload">UPLOAD</Link>
+          </li>
+          
+          <li>
             <Link to="/profile">PROFILE</Link>
           </li>
           <li>

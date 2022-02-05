@@ -1,9 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { Upload, message } from "antd";
 import "antd/dist/antd.css";
+import { useMutation } from "@apollo/client";
+import { ADD_SEARCH_INQUIRY } from "../utils/mutations";
+import { Link } from "react-router-dom";
+
 
 const FirstUpload = () => {
+  const [FormData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    image: "",
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...FormData, [name]: value });
+  };
+  const [addSearchInquiry, { error }] = useMutation(ADD_SEARCH_INQUIRY);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await addSearchInquiry({
+        variables: {
+          firstName: FormData.firstName,
+          lastName: FormData.lastName,
+          dateOfBirth: FormData.dateOfBirth,
+          image: FormData.image,
+        },
+      });
+      console.log(mutationResponse);
+    } catch (err) {
+      console.error(err);
+    }
+    setFormData({
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      image: "",
+    });
+  };
+
   const { Dragger } = Upload;
 
   const props = {
@@ -44,27 +83,37 @@ const FirstUpload = () => {
             </Dragger>
           </div>
           <div className="reference-detail-container">
-            <form className="reference-form">
+            <form className="reference-form" onSubmit={handleFormSubmit}>
               <div className="first-last-container">
                 <div>
                   <input
                     type="text"
-                    name="first name"
+                    name="firstName"
                     placeholder="first name"
-                  />
+                    onChange={handleInputChange}
+                  ></input>
                 </div>
                 <div>
-                  <input type="text" name="last name" placeholder="last name" />
+                  <input
+                    onChange={handleInputChange}
+                    type="text"
+                    name="lastName"
+                    placeholder="last name"
+                  ></input>
                 </div>
               </div>
               <div>
                 <input
                   type="date"
-                  name="date of birth"
+                  name="dateOfBirth"
                   placeholder="MM/DD/YYYY"
-                />
+                  onChange={handleInputChange}
+                ></input>
               </div>
-              <button className="button">Next</button>
+              {error && <div className="">{error.message}</div>}
+              <Link to="/compare"><button className="button" type="submit">
+                Next
+              </button></Link>
             </form>
           </div>
         </div>
