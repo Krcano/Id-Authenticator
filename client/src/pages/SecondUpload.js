@@ -1,70 +1,70 @@
 import React from "react";
+import { useState } from "react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { Upload, message } from "antd";
 import "antd/dist/antd.css";
+import { Link } from "react-router-dom";
+// import { useReferenceImage, useReferenceImageUpdate } from "../utils/ImageContext";
 
-const FirstUpload = () => {
-  const { Dragger } = Upload;
+
+const SecondUpload = () => {
+  // const { Dragger } = Upload;
+  // const props = {
+  //   name: "file",
+  //   multiple: false,
+  //   listType: "picture",
+  //   action: '/upload.do',
+  //   style: { padding: 50, fontFamily: "'Share Tech Mono', monospace" },
+  //   onChange(info) {
+  //     const { status } = info.file;
+  //     if (status !== "uploading") {
+  //       console.log(info.file, info.fileList);
+  //       console.log(info);
+  //     }
+  //     if (status === "done") {
+  //       message.success(`${info.file.name} file uploaded successfully.`);
+  //     } else if (status === "error") {
+  //       message.error(`${info.file.name} file upload failed.`);
+  //     }
+  //   },
+  //   onChange(info) {
+  //     console.log("Dropped files", info);
+  //   },
+  // };
+
+  // const [searchImage, setSearchImage] = useState([]);
+
+  const imageUpload = document.getElementById('imageUpload')
 
   const props = {
     name: "file",
     multiple: false,
-    action: "http://localhost:3000/",
-    listType: "picture",
-    style: { padding: 50, fontFamily: "'Share Tech Mono', monospace" },
-    onChange(info) {
-      const { status } = info.file;
-      if (status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-    onDrop(e) {
-      console.log("Dropped files", e.dataTransfer.files);
-    },
-  };
+    onChange() {
+      setSearchImage(imageUpload)
+    }
+  }
 
   return (
     <body className="profile-body">
       <div className="upload-container">
         <div className="container-header">
-          <h1>Upload Image Reference</h1>
+          <h1>Upload Search Image</h1>
         </div>
         <div className="form-container">
           <div className="drop-box-container">
-            <Dragger {...props}>
+            {/* <Dragger {...props}>
               <BsFillCloudUploadFill className="react-icons" />
               <p className="ant-upload-text">
                 Click or drag file to this area to upload
               </p>
-            </Dragger>
+            </Dragger> */}
+            <input type='file' id='imageUpload' {...props} ></input>
           </div>
           <div className="reference-detail-container">
             <form className="reference-form">
-              <div className="first-last-container">
-                <div>
-                  <input
-                    type="text"
-                    name="first name"
-                    placeholder="first name"
-                  />
-                </div>
-                <div>
-                  <input type="text" name="last name" placeholder="last name" />
-                </div>
-              </div>
-              <div>
-                <input
-                  type="date"
-                  name="date of birth"
-                  placeholder="MM/DD/YYYY"
-                />
-              </div>
-              <button className="button">Next</button>
+              <Link className="link" to="/compare" searchImage={searchImage} >
+              <button className="button" >Next</button>
+              </Link>
             </form>
           </div>
         </div>
@@ -73,4 +73,4 @@ const FirstUpload = () => {
   );
 };
 
-export default FirstUpload;
+export default SecondUpload;
