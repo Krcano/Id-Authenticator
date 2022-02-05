@@ -45,6 +45,7 @@ const Compare = () => {
       faceMatcher.findBestMatch(d.descriptor)
     );
     results.forEach((result, i) => {
+<<<<<<< HEAD
       const box = resizeDetections[i].detection.box;
       const drawBox = new faceapi.draw.DrawBox(box, {
         label: result.toString(),
@@ -54,6 +55,13 @@ const Compare = () => {
     console.log(detections);
     console.log(results);
   };
+=======
+      const box = resizeDetections[i].detection.box
+      const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
+      drawBox.draw(canvas)
+    })
+  }
+>>>>>>> 113d98250910bb816848afb6237e32a308836490
   useEffect(() => {
     const loadModels = () => {
       Promise.all([

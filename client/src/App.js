@@ -12,6 +12,7 @@ import Landing from "./pages/Landing";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
+import Profile from "./components/Profile"
 
 // import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
 // import download from "./img/download.jpg";
@@ -57,9 +58,14 @@ function App() {
             <Route path="/" element={<Landing />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
+<<<<<<< HEAD
             <Route path="/profile" element={<FirstUpload />}></Route>
             <Route path="/profile2" element={<SecondUpload />}></Route>
+=======
+            <Route path="/firstUpload" element={<FirstUpload />}></Route>
+>>>>>>> 113d98250910bb816848afb6237e32a308836490
             <Route path="/compare" element={<ThirdCompare />}></Route>
+            <Route path="/profile" element={<Profile/>}></Route>
           </Routes>
           <Footer />
         </>
