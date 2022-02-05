@@ -25,6 +25,8 @@ const userSchema = new Schema({
   searchInquiries: [{ type: Schema.Types.ObjectId, ref: SearchInquiry }],
 });
 
+
+
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;

@@ -17,7 +17,6 @@ import Profile from "./components/Profile"
 // import video from "./img/crowd-of-people-walking-on-nyc-sidewalk.mp4";
 // import download from "./img/download.jpg";
 import FirstUpload from "./pages/FirstUpload";
-import SecondUpload from "./pages/SecondUpload";
 import ThirdCompare from "./pages/ThirdCompare";
 
 const httpLink = createHttpLink({
