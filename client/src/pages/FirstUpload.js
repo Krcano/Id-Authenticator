@@ -6,7 +6,6 @@ import { useMutation } from "@apollo/client";
 import { ADD_SEARCH_INQUIRY } from "../utils/mutations";
 import { Link } from "react-router-dom";
 
-
 const FirstUpload = () => {
   const [FormData, setFormData] = useState({
     firstName: "",
@@ -75,7 +74,7 @@ const FirstUpload = () => {
         </div>
         <div className="form-container">
           <div className="drop-box-container">
-            <Dragger {...props} >
+            <Dragger {...props}>
               <BsFillCloudUploadFill className="react-icons" />
               <p className="ant-upload-text">
                 Click or drag file to this area to upload
@@ -111,9 +110,11 @@ const FirstUpload = () => {
                 ></input>
               </div>
               {error && <div className="">{error.message}</div>}
-              <Link to="/compare"><button className="button" type="submit">
-                Next
-              </button></Link>
+              {/* <Link to="/profile"> */}
+                <button className="button" type="submit">
+                  Next
+                </button>
+              {/* </Link> */}
             </form>
           </div>
         </div>

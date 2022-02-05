@@ -61,9 +61,8 @@ mutation updateSearchInquiry {
 `;
 
 export const REMOVE_SEARCH_INQUIRY = gql`
-mutation removeSearchInquiry ($_id:ID){
-  removeSearchInquiry(_id:$_id) {
-    _id
+mutation removeSearchInquiry {
+  removeSearchInquiry(_id: ID) {
     firstName
     lastName
     dateOfBirth

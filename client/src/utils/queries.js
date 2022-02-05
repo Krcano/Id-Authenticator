@@ -40,13 +40,14 @@ export const GET_SEARCH_INQUIRY = gql`
   }
 `;
 
-// export const GET_ALL_SEARCH_INQUIRIES =gql
-// `query searchInquiry {
-//   searchInquiry{
-//     _id
-//     firstName
-//     lastName
-//     dateOfBirth
-//     image
-//   }
-// }`
+export const GET_ALL_SEARCH_INQUIRIES =gql
+`query searchInquiry {
+  searchInquiry{
+    _id
+    firstName
+    lastName
+    dateOfBirth
+    image
+  }
+}
+`

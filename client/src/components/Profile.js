@@ -9,14 +9,17 @@ const Profile = () => {
   const [removeSearchInquiry] = useMutation(REMOVE_SEARCH_INQUIRY);
 
   console.log(searchData);
-  const handleDelete = async (_id) => {
+  const handleDelete = async (id) => {
     try {
-      const response = await removeSearchInquiry({ variables: _id });
+      const response = await removeSearchInquiry({
+        variables: {id: id},
+      });
 
-      removeSearchInquiry(_id);
+      await removeSearchInquiry(id);
       console.log(response);
     } catch (error) {
       console.log(error);
+      console.log(JSON.stringify(error, null, 2));
     }
   };
   return (
@@ -35,8 +38,15 @@ const Profile = () => {
 
               <h2 className="">Date Of Birth: {data.dateOfBirth}</h2>
 
-              <button className="button" onClick={() => handleDelete(data._id)}>
+              <button
+                className="button"
+                onClick={() => {
+                  handleDelete(data._id);
+                  console.log(data._id)
+                }}
+              >
                 Delete Info
+                
               </button>
               {/* need to add update */}
               {/* <button className="button"onClick={() => data}>

@@ -33,7 +33,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addSearchInquiry(firstName: String, lastName: String, dateOfBirth:String, image: String): SearchInquiry
     updateSearchInquiry(_id:ID!, firstName: String, lastName: String, dateOfBirth:String, image: String): SearchInquiry
-    removeSearchInquiry(_id: ID!): SearchInquiry
+    removeSearchInquiry(_id:ID!):  SearchInquiry
   }
 `;
 // still need an update and delete

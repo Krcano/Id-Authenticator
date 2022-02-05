@@ -7,7 +7,7 @@ const resolvers = {
     users: async () => {
       return User.find();
     },
-    user: async (parent, {_id}, context) => {
+    user: async (parent, { _id }, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate(
           "searchInquiries"
@@ -109,8 +109,34 @@ const resolvers = {
         { new: true }
       );
       console.log(data);
+
       return data;
     },
+
+    // removeSearchInquiry: async(parent, {_id}, context)=>{
+    //   const data = await SearchInquiry.find((_id)=>{data._id === _id})
+    //   if(data){
+    //    const searchInquiries = User.searchInquiries.filter((_id)=>{data._id === _id})
+    //    return searchInquiries
+    //   }
+
+    // }
+// removeSearchInquiry: async (parent, {_id}, context)=>{
+//   if (context.user) {
+//     // const book = await Book.findOneAndDelete({
+//     //   _id: bookId,
+//     // });
+
+//     const updated = await User.findOneAndUpdate(
+//       { _id: context.user._id },
+//       { $pull: {searchInquiries: {_id: _id}  } },
+//       { new: true }
+//     )
+
+//     return updated;
+//   }
+// }
+    
   },
 };
 
