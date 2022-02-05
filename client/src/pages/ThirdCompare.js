@@ -1,5 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_SEARCH_INQUIRY } from "../utils/mutations";
 import * as faceapi from "face-api.js";
 // import img from "../img/download.jpg";
 // import img2 from "../img/download.2.jpg";
@@ -7,6 +9,42 @@ import mcLovin from '../img/McLovin.jpg'
 import supperBad from '../img/superbad.jpg'
 
 const Compare = () => {
+  const [FormData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    image: "",
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...FormData, [name]: value });
+  };
+  const [addSearchInquiry, { error }] = useMutation(ADD_SEARCH_INQUIRY);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await addSearchInquiry({
+        variables: {
+          firstName: FormData.firstName,
+          lastName: FormData.lastName,
+          dateOfBirth: FormData.dateOfBirth,
+          image: FormData.image,
+        },
+      });
+      console.log(mutationResponse);
+    } catch (err) {
+      console.error(err);
+    }
+    setFormData({
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      image: "",
+    });
+  };
+// ---------------------------------------------------------------
+
   const [referenceImage, setReferenceImage] = useState("");
   const [searchImage, setSearchImage] = useState("");
   // const imgInput1 = useRef();
@@ -100,25 +138,27 @@ const Compare = () => {
             {/* <form className="reference-form">
               <button className="button" >Next</button>
             </form> */}
-            <form className="reference-form">
+            <form className="reference-form" onSubmit={handleFormSubmit}>
               <div className="first-last-container">
                 <div>
-                  <input
-                    type="text"
+                  <input  type="text"
                     name="first name"
-                    placeholder="first name"
-                  />
+                    placeholder="firstName"
+                    onChange={handleInputChange}>
+                 
+                    </input>
                 </div>
                 <div>
-                  <input type="text" name="last name" placeholder="last name" />
+                  <input  type="text" name="lastName" placeholder="last name" onChange={handleInputChange}> </input>
                 </div>
               </div>
               <div>
-                <input
-                  type="date"
-                  name="date of birth"
+                <input type="date"
+                  name="dateOfBirth"
                   placeholder="MM/DD/YYYY"
-                />
+                  onChange={handleInputChange}>
+                  
+                  </input>
               </div>
               <button className="button">Start</button>
             </form>
