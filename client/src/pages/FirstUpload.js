@@ -2,6 +2,7 @@ import React from "react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { Upload, message } from "antd";
 import "antd/dist/antd.css";
+import { Link } from "react-router-dom";
 
 const FirstUpload = () => {
   const { Dragger } = Upload;
@@ -36,7 +37,7 @@ const FirstUpload = () => {
         </div>
         <div className="form-container">
           <div className="drop-box-container">
-            <Dragger {...props} >
+            <Dragger {...props}>
               <BsFillCloudUploadFill className="react-icons" />
               <p className="ant-upload-text">
                 Click or drag file to this area to upload
@@ -64,7 +65,11 @@ const FirstUpload = () => {
                   placeholder="MM/DD/YYYY"
                 />
               </div>
-              <button className="button">Next</button>
+              <button className="button">
+                <Link className="" to="/profile2">
+                  Next
+                </Link>
+              </button>
             </form>
           </div>
         </div>

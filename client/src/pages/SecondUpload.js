@@ -2,6 +2,7 @@ import React from "react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { Upload, message } from "antd";
 import "antd/dist/antd.css";
+import { Link } from "react-router-dom";
 
 const FirstUpload = () => {
   const { Dragger } = Upload;
@@ -64,7 +65,11 @@ const FirstUpload = () => {
                   placeholder="MM/DD/YYYY"
                 />
               </div>
-              <button className="button">Next</button>
+              <button className="button">
+                <Link className="" to="/compare">
+                  Compare
+                </Link>
+              </button>
             </form>
           </div>
         </div>

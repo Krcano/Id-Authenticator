@@ -58,6 +58,7 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/profile" element={<FirstUpload />}></Route>
+            <Route path="/profile2" element={<SecondUpload />}></Route>
             <Route path="/compare" element={<ThirdCompare />}></Route>
           </Routes>
           <Footer />
