@@ -5,6 +5,14 @@ const db = require("./config/connection");
 const { typeDefs, resolvers } = require("./schema/index");
 const { authMiddleware } = require("./utils/auth");
 const app = express();
+
+const multer = require('multer')
+const upload = multer({dest:'upload/'})
+
+app.post('/uploadFile', upload.single("refImg"),(req, res)=>{
+  res.send('200')
+})
+
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
@@ -13,6 +21,8 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
+
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,57 +36,7 @@ app.use(express.static(path.join(__dirname, "../../weights")));
 app.use(express.static(path.join(__dirname, "../../dist")));
 
 // app.get("/", (req, res) => res.redirect("/face_detection"));
-app.get("/face_detection", (req, res) =>
-  res.sendFile(path.join(viewsDir, "faceDetection.html"))
-);
-app.get("/face_landmark_detection", (req, res) =>
-  res.sendFile(path.join(viewsDir, "faceLandmarkDetection.html"))
-);
-app.get("/face_expression_recognition", (req, res) =>
-  res.sendFile(path.join(viewsDir, "faceExpressionRecognition.html"))
-);
-app.get("/age_and_gender_recognition", (req, res) =>
-  res.sendFile(path.join(viewsDir, "ageAndGenderRecognition.html"))
-);
-app.get("/face_extraction", (req, res) =>
-  res.sendFile(path.join(viewsDir, "faceExtraction.html"))
-);
-app.get("/face_recognition", (req, res) =>
-  res.sendFile(path.join(viewsDir, "faceRecognition.html"))
-);
-app.get("/video_face_tracking", (req, res) =>
-  res.sendFile(path.join(viewsDir, "videoFaceTracking.html"))
-);
-app.get("/webcam_face_detection", (req, res) =>
-  res.sendFile(path.join(viewsDir, "webcamFaceDetection.html"))
-);
-app.get("/webcam_face_landmark_detection", (req, res) =>
-  res.sendFile(path.join(viewsDir, "webcamFaceLandmarkDetection.html"))
-);
-app.get("/webcam_face_expression_recognition", (req, res) =>
-  res.sendFile(path.join(viewsDir, "webcamFaceExpressionRecognition.html"))
-);
-app.get("/webcam_age_and_gender_recognition", (req, res) =>
-  res.sendFile(path.join(viewsDir, "webcamAgeAndGenderRecognition.html"))
-);
-app.get("/bbt_face_landmark_detection", (req, res) =>
-  res.sendFile(path.join(viewsDir, "bbtFaceLandmarkDetection.html"))
-);
-app.get("/bbt_face_similarity", (req, res) =>
-  res.sendFile(path.join(viewsDir, "bbtFaceSimilarity.html"))
-);
-app.get("/bbt_face_matching", (req, res) =>
-  res.sendFile(path.join(viewsDir, "bbtFaceMatching.html"))
-);
-app.get("/bbt_face_recognition", (req, res) =>
-  res.sendFile(path.join(viewsDir, "bbtFaceRecognition.html"))
-);
-app.get("/batch_face_landmarks", (req, res) =>
-  res.sendFile(path.join(viewsDir, "batchFaceLandmarks.html"))
-);
-app.get("/batch_face_recognition", (req, res) =>
-  res.sendFile(path.join(viewsDir, "batchFaceRecognition.html"))
-);
+
 
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === "production") {
