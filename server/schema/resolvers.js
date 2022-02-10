@@ -103,14 +103,17 @@ const resolvers = {
       return updatedSearch;
     },
 
-    removeSearchInquiry: async (parent, { _id }) => {
-      const data = await SearchInquiry.findOneAndRemove(
+    removeSearchInquiry: async (parent, { _id }, context) => {
+
+      if(context.user){
+      const data = await SearchInquiry.findOneAndDelete(
         { _id: _id },
         { new: true }
       );
       console.log(data);
 
       return data;
+      }
     },
 
     // removeSearchInquiry: async(parent, {_id}, context)=>{
@@ -123,9 +126,9 @@ const resolvers = {
     // }
 // removeSearchInquiry: async (parent, {_id}, context)=>{
 //   if (context.user) {
-//     // const book = await Book.findOneAndDelete({
-//     //   _id: bookId,
-//     // });
+// //     // const book = await Book.findOneAndDelete({
+// //     //   _id: bookId,
+// //     // });
 
 //     const updated = await User.findOneAndUpdate(
 //       { _id: context.user._id },
