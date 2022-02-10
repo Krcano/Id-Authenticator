@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 const { schema } = require("./User");
 
 const SearchInquirySchema = new Schema({
+  // _id:{ type: Schema.Types.ObjectId},
   firstName: {
     type: String,
     // required: true,
@@ -19,7 +20,6 @@ const SearchInquirySchema = new Schema({
     type: String,
     // required: true,
   },
-  
 });
 
 const SearchInquiry = model("SearchInquiry", SearchInquirySchema);

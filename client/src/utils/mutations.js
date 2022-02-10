@@ -11,8 +11,7 @@ export const LOGIN_USER = gql`
     }
   }
 `;
-// rockysemail@email.com rocky
-// 
+
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
@@ -61,8 +60,8 @@ mutation updateSearchInquiry {
 `;
 
 export const REMOVE_SEARCH_INQUIRY = gql`
-mutation removeSearchInquiry {
-  removeSearchInquiry(_id: ID) {
+mutation removeSearchInquiry($_id:String) {
+  removeSearchInquiry(_id:$_id) {
     firstName
     lastName
     dateOfBirth

@@ -5,23 +5,27 @@ import { REMOVE_SEARCH_INQUIRY } from "../utils/mutations";
 
 const Profile = () => {
   const { data } = useQuery(GET_USER);
+  
   const searchData = data?.user || {};
   const [removeSearchInquiry] = useMutation(REMOVE_SEARCH_INQUIRY);
-
-  console.log(searchData);
-  const handleDelete = async (id) => {
+ 
+  const handleDelete = async (_id) => {
+    
     try {
       const response = await removeSearchInquiry({
-        variables: {id: id},
+        variables:{_id} ,
       });
+  // console.log(_id);
 
-      await removeSearchInquiry(id);
+       removeSearchInquiry(_id);
+       window.location.reload(false)
       console.log(response);
     } catch (error) {
       console.log(error);
-      console.log(JSON.stringify(error, null, 2));
+      // console.log(JSON.stringify(error, null, 2));
     }
   };
+  // console.log(handleDelete)
   return (
     <div className="profBG">
       <div>
@@ -42,11 +46,10 @@ const Profile = () => {
                 className="button"
                 onClick={() => {
                   handleDelete(data._id);
-                  console.log(data._id)
+                  console.log(data._id);
                 }}
               >
                 Delete Info
-                
               </button>
               {/* need to add update */}
               {/* <button className="button"onClick={() => data}>
