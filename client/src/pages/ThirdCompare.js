@@ -3,11 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_SEARCH_INQUIRY } from "../utils/mutations";
 import * as faceapi from "face-api.js";
-// import img from "../img/download.jpg";
-// import img2 from "../img/download.2.jpg";
-import mcLovin from '../img/McLovin.jpg'
-import supperBad from '../img/superbad.jpg'
 
+// ---------------------------------------------------------------
+// -------------------Form Submit Code----------------------------
 const Compare = () => {
   const [FormData, setFormData] = useState({
     firstName: "",
@@ -43,21 +41,52 @@ const Compare = () => {
       image: "",
     });
   };
-// ---------------------------------------------------------------
 
-  const [referenceImage, setReferenceImage] = useState("");
-  const [searchImage, setSearchImage] = useState("");
-  // const imgInput1 = useRef();
-  // const imgInput2 = useRef();
+// ---------------------------------------------------------------
+// ------------Setting Images to Display--------------------------
+  const [referenceImage, setReferenceImage] = useState({ preview: '', data: '' });
+  const [searchImage, setSearchImage] = useState({ preview: '', data: '' });
 
   const onChange = (e) => {
-    setReferenceImage(e.target.files[0]);
-  };
+    const img = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0]
+    }
+    setReferenceImage(img)
+    console.log(referenceImage.data);
+  }
 
   const onChange2 = (e) => {
-    setSearchImage(e.target.files[0]);
-  };
+    const img = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0]
+    }
+    setSearchImage(img)
+    console.log(searchImage.data);
+  }
 
+// -----Function to Save Uploads on Backend (Not Working)---------
+  // const sendImage = async (e) => {
+  //   e.preventDefault();
+
+  //   let imageData = new ImageData()
+
+  //   imageData.append("avatar", referenceImage.data);
+
+  //   console.log(imageData);
+
+  //   fetch("http://localhost:3001/uploadFile", {
+  //   method: "post",
+  //   body: imageData,
+  // })
+  //   .then((res) => res.text())
+  //   .then((resBody) => {
+  //     console.log(resBody);
+  //   });
+  // };
+
+// ---------------------------------------------------------------
+// ------------Using Images to Run FaceAPI------------------------
   const imgRef = useRef();
   const imgRef2 = useRef();
 
@@ -108,7 +137,7 @@ const Compare = () => {
         faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
         faceapi.nets.ssdMobilenetv1.loadFromUri("/models"),
       ])
-        .then(start)
+        .then()
         .catch((e) => console.log(e));
       console.log("its done");
     };
@@ -117,6 +146,8 @@ const Compare = () => {
     // imgRef2.current && loadModels();
   }, []);
 
+// ---------------------------------------------------------------
+// -------------------------JSX Code------------------------------
   return (
     <body className="profile-body">
       <div className="upload-container">
@@ -131,14 +162,17 @@ const Compare = () => {
                 Click or drag file to this area to upload
               </p>
             </Dragger> ref={imgInput1} ref={imgInput2} */}
-            <input type="file" id="imageUpload" onChange={onChange}></input>
-            <input type="file" id="imageUpload2" onChange={onChange2}></input>
+            <form action="/uploadFile" method="post" encType="multipart/form-data" onSubmit={sendImage} >
+              <input type="file" name="avatar" id="imageUpload" onChange={onChange}></input>
+              <input type="file" name="avatar" id="imageUpload2" onChange={onChange2}></input>
+              <button className="button" type="submit" >Submit</button>
+            </form>
           </div>
           <div className="reference-detail-container">
             {/* <form className="reference-form">
               <button className="button" >Next</button>
             </form> */}
-            <form className="reference-form" onSubmit={handleFormSubmit}>
+            <form className="reference-form" >
               <div className="first-last-container">
                 <div>
                   <input  type="text"
@@ -158,7 +192,7 @@ const Compare = () => {
                   onChange={handleInputChange}>
                 </input>
               </div>
-              <button className="button" type="submit">Start</button>
+              <button className="button" type="submit" onClick={handleInputChange}>Start</button>
             </form>
           </div>
         </div>
@@ -171,10 +205,10 @@ const Compare = () => {
         <div className="form-container">
           <div className="compare-container">
             <div className="reference-frame">
-              <img ref={imgRef2} id="ref2" src={mcLovin} />
+              <img ref={imgRef2} id="ref2" src={referenceImage.preview} />
             </div>
             <div className="search-frame" id="canvas">
-              <img ref={imgRef} id="ref1" src={supperBad} />
+              <img ref={imgRef} id="ref1" src={searchImage.preview} />
             </div>
           </div>
           <div className="results-container">
@@ -187,7 +221,7 @@ const Compare = () => {
               </p>
             </div>
             <div>
-              <button className="button">New Search</button>
+              <button className="button" onClick={start} >New Search</button>
             </div>
           </div>
         </div>
