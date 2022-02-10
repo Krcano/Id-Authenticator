@@ -4,8 +4,8 @@ import { useMutation } from "@apollo/client";
 import { ADD_SEARCH_INQUIRY } from "../utils/mutations";
 import * as faceapi from "face-api.js";
 // import placeHolder from '../img/placeholder.jpg'
-import woldo from '../img/woldo.gif'
-import foundWoldo from '../img/woldo-found.jpg'
+import woldo from "../img/woldo.gif";
+import foundWoldo from "../img/woldo-found.jpg";
 
 // ---------------------------------------------------------------
 // -------------------Form Submit Code----------------------------
@@ -45,30 +45,36 @@ const Compare = () => {
     });
   };
 
-// ---------------------------------------------------------------
-// ------------Setting Images to Display--------------------------
-  const [referenceImage, setReferenceImage] = useState({ preview: woldo, data: '' });
-  const [searchImage, setSearchImage] = useState({ preview: foundWoldo, data: '' });
+  // ---------------------------------------------------------------
+  // ------------Setting Images to Display--------------------------
+  const [referenceImage, setReferenceImage] = useState({
+    preview: woldo,
+    data: "",
+  });
+  const [searchImage, setSearchImage] = useState({
+    preview: foundWoldo,
+    data: "",
+  });
 
   const onChange = (e) => {
     const img = {
       preview: URL.createObjectURL(e.target.files[0]),
-      data: e.target.files[0]
-    }
-    setReferenceImage(img)
+      data: e.target.files[0],
+    };
+    setReferenceImage(img);
     console.log(referenceImage.data);
-  }
+  };
 
   const onChange2 = (e) => {
     const img = {
       preview: URL.createObjectURL(e.target.files[0]),
-      data: e.target.files[0]
-    }
-    setSearchImage(img)
+      data: e.target.files[0],
+    };
+    setSearchImage(img);
     console.log(searchImage.data);
-  }
+  };
 
-// -----Function to Save Uploads on Backend (Not Working)---------
+  // -----Function to Save Uploads on Backend (Not Working)---------
   // const sendImage = async (e) => {
   //   e.preventDefault();
 
@@ -88,13 +94,13 @@ const Compare = () => {
   //   });
   // };
 
-// ---------------------------------------------------------------
-// ------------Using Images to Run FaceAPI------------------------
+  // ---------------------------------------------------------------
+  // ------------Using Images to Run FaceAPI------------------------
   const imgRef = useRef();
   const imgRef2 = useRef();
 
   const start = async () => {
-    const label = "McLovin";
+    const label = `${FormData.firstName} ${FormData.lastName}`;
     const descriptions = [];
     const referenceDetections = await faceapi
       .detectSingleFace(imgRef2.current)
@@ -107,15 +113,13 @@ const Compare = () => {
     );
     const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
 
-
-
     // const image = await faceapi.bufferToImage(imgRef.current)
     const canvas = faceapi.createCanvasFromMedia(imgRef.current);
 
     //  if (canvas) {
     //   document.getElementById("canvas").removeChild(canvas);
-    // }   
-    
+    // }
+
     document.getElementById("canvas").appendChild(canvas);
     const displaySize = {
       width: imgRef.current.width,
@@ -156,8 +160,12 @@ const Compare = () => {
     // imgRef2.current && loadModels();
   }, []);
 
-// ---------------------------------------------------------------
-// -------------------------JSX Code------------------------------
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
+  // ---------------------------------------------------------------
+  // -------------------------JSX Code------------------------------
   return (
     <body className="profile-body">
       <div className="upload-container">
@@ -172,37 +180,62 @@ const Compare = () => {
                 Click or drag file to this area to upload
               </p>
             </Dragger> ref={imgInput1} ref={imgInput2} */}
-            <form action="/uploadFile" method="post" encType="multipart/form-data" >
-              <input type="file" name="avatar" id="imageUpload" onChange={onChange}></input>
-              <input type="file" name="avatar" id="imageUpload2" onChange={onChange2}></input>
-              <button className="button" type="submit" >Submit</button>
+            <form
+              action="/uploadFile"
+              method="post"
+              encType="multipart/form-data"
+            >
+              <input
+                type="file"
+                name="avatar"
+                id="imageUpload"
+                onChange={onChange}
+              ></input>
+              <input
+                type="file"
+                name="avatar"
+                id="imageUpload2"
+                onChange={onChange2}
+              ></input>
+              <button className="button" type="submit">
+                Submit
+              </button>
             </form>
           </div>
           <div className="reference-detail-container">
             {/* <form className="reference-form">
               <button className="button" >Next</button>
             </form> */}
-            <form className="reference-form" >
+            <form className="reference-form" onSubmit={handleFormSubmit}>
               <div className="first-last-container">
                 <div>
-                  <input  type="text"
+                  <input
+                    type="text"
                     name="firstName"
                     placeholder="firstName"
-                    onChange={handleInputChange}>
-                  </input>
+                    onChange={handleInputChange}
+                  ></input>
                 </div>
                 <div>
-                  <input type="text" name="lastName" placeholder="last name" onChange={handleInputChange}></input>
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="last name"
+                    onChange={handleInputChange}
+                  ></input>
                 </div>
               </div>
               <div>
-                <input type="date"
+                <input
+                  type="date"
                   name="dateOfBirth"
                   placeholder="MM/DD/YYYY"
-                  onChange={handleInputChange}>
-                </input>
+                  onChange={handleInputChange}
+                ></input>
               </div>
-              <button className="button" type="submit" onClick={handleInputChange}>Start</button>
+              <button className="button" type="submit" onClick={start}>
+                Start
+              </button>
             </form>
           </div>
         </div>
@@ -231,7 +264,9 @@ const Compare = () => {
               </p>
             </div>
             <div>
-              <button className="button" onClick={start} >New Search</button>
+              <button className="button" onClick={refreshPage}>
+                New Search
+              </button>
             </div>
           </div>
         </div>
