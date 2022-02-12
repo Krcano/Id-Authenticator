@@ -1,23 +1,25 @@
 import React from "react";
+import { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER } from "../utils/queries";
 import { REMOVE_SEARCH_INQUIRY } from "../utils/mutations";
 
 const Profile = () => {
   const { data } = useQuery(GET_USER);
-  
+  // const [ profile ,setProfiles] = useState("")
+
   const searchData = data?.user || {};
   const [removeSearchInquiry] = useMutation(REMOVE_SEARCH_INQUIRY);
- 
+
   const handleDelete = async (_id) => {
-    
     try {
       const response = await removeSearchInquiry({
-        variables:{_id} ,
+        variables: { _id },
       });
-  // console.log(_id);
+      // console.log(_id);
 
-       removeSearchInquiry(_id);
+      removeSearchInquiry(_id);
+      //  setProfiles([searchData])
        window.location.reload(false)
       console.log(response);
     } catch (error) {
@@ -25,7 +27,7 @@ const Profile = () => {
       // console.log(JSON.stringify(error, null, 2));
     }
   };
-  // console.log(handleDelete)
+ 
   return (
     <div className="profBG">
       <div>
