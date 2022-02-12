@@ -104,42 +104,23 @@ const resolvers = {
     },
 
     removeSearchInquiry: async (parent, { _id }, context) => {
+      if (context.user) {
+        const data = await SearchInquiry.findOneAndDelete(
+          { _id: _id },
+          { new: true }
+        );
+        console.log(data);
 
-      if(context.user){
-      const data = await SearchInquiry.findOneAndDelete(
-        { _id: _id },
-        { new: true }
-      );
-      console.log(data);
-
-      return data;
+        // const updated = await User.findOneAndUpdate(
+        //   { _id: context.user._id },
+        //   { $pull: { searchInquiries: { _id: _id } } },
+        //   { new: true }
+        // );
+        // console.log(updated);
+        return data;
       }
     },
 
-    // removeSearchInquiry: async(parent, {_id}, context)=>{
-    //   const data = await SearchInquiry.find((_id)=>{data._id === _id})
-    //   if(data){
-    //    const searchInquiries = User.searchInquiries.filter((_id)=>{data._id === _id})
-    //    return searchInquiries
-    //   }
-
-    // }
-// removeSearchInquiry: async (parent, {_id}, context)=>{
-//   if (context.user) {
-// //     // const book = await Book.findOneAndDelete({
-// //     //   _id: bookId,
-// //     // });
-
-//     const updated = await User.findOneAndUpdate(
-//       { _id: context.user._id },
-//       { $pull: {searchInquiries: {_id: _id}  } },
-//       { new: true }
-//     )
-
-//     return updated;
-//   }
-// }
-    
   },
 };
 

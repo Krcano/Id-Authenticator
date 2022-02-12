@@ -94,7 +94,7 @@ const Compare = () => {
   const imgRef2 = useRef();
 
   const start = async () => {
-    const label = "McLovin";
+    const label = `${FormData.firstName} ${FormData.lastName}`;
     const descriptions = [];
     const referenceDetections = await faceapi
       .detectSingleFace(imgRef2.current)
@@ -182,7 +182,7 @@ const Compare = () => {
             {/* <form className="reference-form">
               <button className="button" >Next</button>
             </form> */}
-            <form className="reference-form" >
+            <form className="reference-form" onSubmit={handleFormSubmit} >
               <div className="first-last-container">
                 <div>
                   <input  type="text"
@@ -202,7 +202,7 @@ const Compare = () => {
                   onChange={handleInputChange}>
                 </input>
               </div>
-              <button className="button" type="submit" onClick={handleInputChange}>Start</button>
+              <button className="button" type="submit" onClick={start} >Start</button>
             </form>
           </div>
         </div>
@@ -231,7 +231,7 @@ const Compare = () => {
               </p>
             </div>
             <div>
-              <button className="button" onClick={start} >New Search</button>
+              <button className="button"  >New Search</button>
             </div>
           </div>
         </div>
