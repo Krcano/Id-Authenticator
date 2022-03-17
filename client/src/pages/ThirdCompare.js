@@ -175,7 +175,7 @@ const Compare = () => {
             <form action="/uploadFile" method="post" encType="multipart/form-data" >
               <input type="file" name="avatar" id="imageUpload" onChange={onChange}></input>
               <input type="file" name="avatar" id="imageUpload2" onChange={onChange2}></input>
-              <button className="button" type="submit" >Submit</button>
+              {/* <button className="button" type="submit" >Submit</button> */}
             </form>
           </div>
           <div className="reference-detail-container">
