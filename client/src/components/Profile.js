@@ -7,6 +7,7 @@ import { REMOVE_SEARCH_INQUIRY } from "../utils/mutations";
 const Profile = () => {
   const { data } = useQuery(GET_USER);
   // const [ profile ,setProfiles] = useState("")
+  // const [deleted, setDeleted] = useState("")
 
   const searchData = data?.user || {};
   const [removeSearchInquiry] = useMutation(REMOVE_SEARCH_INQUIRY);
